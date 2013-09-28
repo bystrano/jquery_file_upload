@@ -1,1 +1,13 @@
-<input type="file" name="#ENV{nom}[]" multiple>
+<input type="hidden" name="joindre_upload" value="oui" />
+<input type="file" id="#ENV{nom}" name="#ENV{nom}[]" multiple
+       data-url="#ENV{action}" >
+
+<script type="text/javascript">
+$(function () {
+    $('\#fileupload').fileupload({
+        done: function (e, data) {
+            $(e.target).submit();
+        }
+    });
+});
+</script>

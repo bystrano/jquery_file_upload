@@ -28,7 +28,7 @@ function jfu_jquery_plugins($plugins){
 	$plugins[] = "javascript/jfu_spip_fonctions.js";
 	$plugins[] = "javascript/jquery_file_upload/js/jquery.iframe-transport.js";
 	$plugins[] = "javascript/jquery_file_upload/js/jquery.fileupload.js";
-	$plugins[] = "javascript/jquery_file_upload/js/jquery.fileupload-ui.js";
+	/* $plugins[] = "javascript/jquery_file_upload/js/jquery.fileupload-ui.js"; */
 	return $plugins;
 }
 

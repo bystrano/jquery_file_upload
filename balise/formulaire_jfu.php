@@ -28,14 +28,14 @@ function balise_FORMULAIRE_JFU_stat($args, $filtres) {
 	if(!$fond_documents = $args[2])
 		$fond_documents = 'inc-upload_documents';
 	// pas dans une boucle ? on attache a l'auteur connecté
-	if ($objet == 'balise_hors_boucle') {
+	if (( ! $objet) OR ($objet == 'balise_hors_boucle')) {
 		$objet = 'auteur';
 		$id_objet = $GLOBALS['auteur_session']['id_auteur'];
 	} else {
 		$objet = table_objet($objet);
 	}
 	// on envoie les arguments a la fonction charger
-	// du formulaire CVT fomulaires/upload.php
+	// du formulaire CVT fomulaires/jfu.php
 	return array($objet, $id_objet, $fond_documents);
 
 }

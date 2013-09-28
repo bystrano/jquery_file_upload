@@ -7,10 +7,10 @@
 	#ACTION_FORMULAIRE{#ENV{action}}
 	<fieldset>
 		<legend><:formupload:yourfiles:></legend>
-		[(#INCLURE{fond=formulaires/#ENV*{fond_documents}}{env}{ajax})
+		[(#INCLURE{fond=formulaires/#ENV*{fond_documents}}{env}{ajax})]
 
 		<ul>
-      [(#SAISIE{upload, fichier, label=<:formupload:choosefiles:>})
+      [(#SAISIE{upload, fichier, label=<:formupload:choosefiles:>})]
 		</ul>
 
 		<p class='boutons'>

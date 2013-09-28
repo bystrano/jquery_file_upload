@@ -5,7 +5,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 //
 // Charger
 //
-function formulaires_upload_charger_dist($objet, $id_objet, $fond_documents){
+function formulaires_jfu_charger_dist($objet, $id_objet, $fond_documents){
 	// definition des valeurs de base du formulaire
 	$valeurs = array(
 		'objet'=>$objet,
@@ -30,7 +30,7 @@ function formulaires_upload_charger_dist($objet, $id_objet, $fond_documents){
 //
 // Verifier
 //
-function formulaires_upload_verifier_dist($objet, $id_objet, $fond_documents){
+function formulaires_jfu_verifier_dist($objet, $id_objet, $fond_documents){
 	$erreurs = array();
 
 	return $erreurs;
@@ -39,7 +39,7 @@ function formulaires_upload_verifier_dist($objet, $id_objet, $fond_documents){
 //
 // Traiter
 //
-function formulaires_upload_traiter_dist($objet, $id_objet, $fond_documents){
+function formulaires_jfu_traiter_dist($objet, $id_objet, $fond_documents){
 	$res = array('editable'=>' ', 'message_ok'=>'');
 
 	$invalider = false;

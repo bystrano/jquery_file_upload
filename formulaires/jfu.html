@@ -1,9 +1,9 @@
-<div class="formulaire_spip formulaire_upload" id="formulaire_upload_#ENV{objet}_#ENV{id_objet}">
+<div class="formulaire_spip formulaire_jfu" id="formulaire_jfu_#ENV{objet}_#ENV{id_objet}">
 <br class='bugajaxie' />
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
 [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 [(#ENV{editable})
-<form action="#ENV{action}#formulaire_upload" method="post" enctype="multipart/form-data">
+<form action="#ENV{action}#formulaire_jfu" method="post" enctype="multipart/form-data">
 	#ACTION_FORMULAIRE{#ENV{action}}
 	<fieldset>
 		<legend><:formupload:yourfiles:></legend>

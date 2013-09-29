@@ -6,19 +6,28 @@
 <script type="text/javascript">
 $(function () {
 
-    var progressbar = $('#progressbar').progressbar({
-        'value': false
-    });
+    (function charger_form_upload () {
+        var upload_form = $('\##ENV{nom}').parents('form').first(),
+            progressbar = upload_form.find('#progressbar').progressbar({
+                'value': false
+            });
 
-    $('\#fileupload').fileupload({
-        done: function (e, data) {
-            $(e.target).submit();
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            progressbar.progressbar('value', progress);
-        }
-    });
-
+        upload_form.fileupload({
+            add: function (e,data) {
+                upload_form.find('\##ENV{nom}').animateLoading();
+                data.submit();
+            },
+            done: function (e, data) {
+                upload_form
+                    .html(data.result)
+                    .endLoading();
+                charger_form_upload();
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                progressbar.progressbar('value', progress);
+            }
+        });
+    })();
 });
 </script>

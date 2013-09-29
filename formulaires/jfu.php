@@ -33,6 +33,11 @@ function formulaires_jfu_charger_dist($objet, $id_objet, $fond_documents){
 function formulaires_jfu_verifier_dist($objet, $id_objet, $fond_documents){
 	$erreurs = array();
 
+  // Vérifier la taille du fichier
+  if ($_FILES AND ($_FILES['fichier']['size'][0] > 100000000)) {
+    $erreurs['fichier'] = 'Ce fichier trop gros. (max. 100MB)';
+  }
+
 	return $erreurs;
 }
 

@@ -7,13 +7,15 @@ $(function () {
 
     (function charger_form_upload () {
         var upload_form = $('\##ENV{nom}').parents('form').first(),
+            input = upload_form.find('\##ENV{nom}'),
             progressbar;
 
         upload_form.fileupload({
             add: function (e,data) {
-                upload_form.find('\##ENV{nom}')
-                    .animateLoading()
-                    .after('<div id="progressbar"></div>');
+                input.animateLoading();
+                if ($('#progressbar').length == 0) {
+                    input.after('<div id="progressbar"></div>');
+                }
                 progressbar = upload_form.find('#progressbar')
                     .progressbar({
                         'value': false

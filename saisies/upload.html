@@ -1,20 +1,24 @@
 <input type="hidden" name="joindre_upload" value="oui" />
 <input type="file" id="#ENV{nom}" name="#ENV{nom}[]" multiple
        data-url="#ENV{action}" >
-<div id="progressbar"></div>
 
 <script type="text/javascript">
 $(function () {
 
     (function charger_form_upload () {
         var upload_form = $('\##ENV{nom}').parents('form').first(),
-            progressbar = upload_form.find('#progressbar').progressbar({
-                'value': false
-            });
+            progressbar;
 
         upload_form.fileupload({
             add: function (e,data) {
-                upload_form.find('\##ENV{nom}').animateLoading();
+                upload_form.find('\##ENV{nom}')
+                    .animateLoading()
+                    .after('<div id="progressbar"></div>');
+                progressbar = upload_form.find('#progressbar')
+                    .progressbar({
+                        'value': false
+                    });
+
                 data.submit();
             },
             done: function (e, data) {

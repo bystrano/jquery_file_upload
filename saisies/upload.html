@@ -26,7 +26,7 @@ $(function () {
             },
             done: function (e, data) {
                 upload_form
-                    .parents('.formulaire_jfu')
+                    .parents('.formulaire_spip')
                     .html(data.result)
                     .endLoading();
                 charger_form_upload();

@@ -3,6 +3,10 @@
        data-url="#ENV{action}" >
 
 <script type="text/javascript">
+[(#ENV{js}|oui)
+  #INCLURE{fond=#ENV{js}, env}
+]
+[(#ENV{js}|non)
 $(function () {
 
     (function charger_form_upload () {
@@ -38,4 +42,5 @@ $(function () {
         });
     })();
 });
-</script>
+]</script>
+

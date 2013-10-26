@@ -26,4 +26,5 @@
 	<pipeline nom="header_prive_css" inclure="jfu_pipelines.php" />
 
 	<necessite nom="jqueryui" compatibilite="[1.8.5;[" />
+	<necessite nom="medias" compatibilite="[2.7.48;[" />
 </paquet>

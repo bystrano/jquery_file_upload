@@ -1,5 +1,5 @@
 <input type="hidden" name="joindre_upload" value="oui" />
-<input type="file" id="[(#ENV{id}|sinon{#ENV{nom}})]" name="#ENV{nom}[]" multiple
+<input[ class="(#ENV{class})"] type="file" id="[(#ENV{id}|sinon{#ENV{nom}})]" name="#ENV{nom}[]" multiple
        data-url="#ENV{action}" >
 
 <script type="text/javascript">

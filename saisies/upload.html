@@ -1,13 +1,14 @@
 <input type="hidden" name="joindre_upload" value="oui" />
-<input type="file" id="#ENV{nom}" name="#ENV{nom}[]" multiple
+<input type="file" id="[(#ENV{id}|sinon{#ENV{nom}})]" name="#ENV{nom}[]" multiple
        data-url="#ENV{action}" >
 
 <script type="text/javascript">
 $(function () {
 
     (function charger_form_upload () {
-        var upload_form = $('\##ENV{nom}').parents('form').first(),
-            input = upload_form.find('\##ENV{nom}'),
+        var input_selector = '\#[(#ENV{id}|sinon{#ENV{nom}})]',
+            input = $(input_selector),
+            upload_form = input.parents('form').first(),
             progressbar;
 
         upload_form.fileupload({

@@ -1,0 +1,81 @@
+$(function () {
+
+    (function charger_form_upload () {
+        var input_selector = '\#[(#ENV{id}|sinon{#ENV{nom}})]',
+            input = $(input_selector),
+            upload_form = input.parents('form').first(),
+            progressbar,
+            file_id = 0; // un index auto-incrémenté pour les fichiers
+
+        upload_form.fileupload({
+            add: function (e,data) {
+                var queue_item;
+
+                if ($(input_selector + '_wrap_list').length == 0) {
+                    $(input_selector).after('<span id="[(#ENV{id}|sinon{#ENV{nom}})]_wrap_list"></span>');
+                }
+
+                /**
+                 * on ajoute un élément dans la file d'attente
+                 */
+                queue_item = $(input_selector + '_wrap_list')
+                    .append(
+[
+    '<div id="queue_item_' + file_id + '">',
+    '  <a href="' + input_selector + '">x</a>',
+    '  <span class="file" title="File selected: ' + data.files[0].name + '">',
+    '    ' + data.files[0].name,
+    '  </span>',
+    '  <div class="progressbar"></div>',
+    '</div>'
+].join(''));
+
+                // $(input_selector).animateLoading();
+
+
+                // bouton supprimer
+                // TODO annuler l'upload et supprimer le fichier
+                queue_item
+                    .children().last()
+                    .find('a').click(function () {
+                        $(this).parent().remove();
+                    });
+
+                // barre de progression
+                queue_item
+                    .find('.progressbar')
+                    .progressbar({
+                        'value': false
+                    });
+
+                // on passe l'index dans les données et on le met à jour
+                data.file_id = file_id;
+                file_id++;
+
+                // on lance l'upload
+                data.submit();
+            },
+            done: function (e, data) {
+                var queue_item = $('#queue_item_' + data.file_id);
+
+                queue_item.remove('.progressbar');
+
+                // TODO, ça deviens trop galère, il faudrait une API
+                // json pour les objets SPIP. Avec le plugin crud ça
+                // devrait être vite fait…
+
+                // upload_form
+                //     .parents('.formulaire_spip')
+                //     .html(data.result)
+                //     .endLoading();
+                // charger_form_upload();
+            },
+            progress: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                $('#queue_item_' + data.file_id + ' .progressbar')
+                    .progressbar('value', progress);
+            }
+        });
+    })();
+});
